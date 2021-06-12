@@ -25,6 +25,11 @@ fs.readFile(packageJsonLocation, (err, data) => {
 
   const availableScripts = Object.keys(packageJson.scripts);
 
+  if (availableScripts.length === 0) {
+    console.error("The package.json do not have any scripts.");
+    process.exit();
+  }
+
   if (availableScripts.length === 1) {
     console.log(`You have one script, Running: ${availableScripts[0]}`);
     runScript(availableScripts[0]);
